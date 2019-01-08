@@ -1,6 +1,6 @@
 # json file reader
 import json
-# get_close_matches compares two arguments and returns similarities that are above 80% similarity
+# get_close_matches compares two arguments and returns similarities that are above the 80% mark
 from difflib import get_close_matches as is_similar
 # speech capabilities
 from gtts import gTTS
@@ -24,10 +24,10 @@ def english_dictionary(word):
         return english_definitions[word]
 
     elif len(is_similar(word, english_definitions.keys())) > 0:
-        yn = input(leo_tag + "Did you mean '{}' instead?: ".format(is_similar(word, english_definitions.keys())[0]))
-        if is_similar(yn.lower(), ['y', 'yes', 'yeah']):
+        yes_no = input(leo_tag + "Did you mean '{}' instead?: ".format(is_similar(word, english_definitions.keys())[0]))
+        if is_similar(yes_no.lower(), ['y', 'yes', 'yeah']):
             return english_definitions[is_similar(word, english_definitions.keys())[0]]
-        elif is_similar(yn, ['n', 'no', 'nope']):
+        elif is_similar(yes_no, ['n', 'no', 'nope']):
             return leo_tag + "The word doesn't exist. Please double check it."
         else:
             return leo_tag + "We didn't understand your entry."
