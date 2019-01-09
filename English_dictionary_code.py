@@ -11,11 +11,15 @@ leo_tag = '[Leo] '
 user_tag = '[You] '
 
 def english_dictionary(word):
-    # checking if the upper case, lower case, or capitalized form of the word is in the dictionary
+    # checking if the lower case form of word is in the dictionary
     if word.lower() in english_definitions:
         return english_definitions[word]
+    
+    # checking if the title form of word is in the dictionary
     elif word.title() in english_definitions:
         return english_definitions[word]
+    
+    # checking if the upper case form of word is in the dictionary
     elif word.upper() in english_definitions:
         return english_definitions[word]
     
@@ -23,9 +27,11 @@ def english_dictionary(word):
     elif len(similarity_between(word, english_definitions.keys())) > 0:
         yes_no = input(leo_tag + "Did you mean '{}' instead?: ".format(similarity_between(word, english_definitions.keys())[0]))
         
-        # asking user to enter yes/no if the suggested word is the expected output
+        # asking user to enter yes if the suggested word is the expected output
         if similarity_between(yes_no.lower(), ['y', 'ye', 'yes', 'yeah']):
             return english_definitions[similarity_beween(word, english_definitions.keys())[0]]
+        
+        # asking user to enter yes/no if the suggested word is the expected output
         elif similarity_between(yes_no.lower(), ['n', 'no', 'nope']):
             return leo_tag + "The word doesn't exist. Please double check it."
         
@@ -33,7 +39,7 @@ def english_dictionary(word):
         else:
             return leo_tag + "We didn't understand your entry."
         
-    # if there is 0% similarity between word and keys of the dictionary
+    # for everything else where there is 0% similarity between word and keys of the dictionary
     else:
         return leo_tag + "The word doesn't exist. Please double check it."
 
@@ -55,7 +61,7 @@ if type(output) == list and len(output) > 1:
 elif type(output) == list and len(output) == 1:
     print(leo_tag + "English definition of '{}' is: ".format(word) + output[0])
 
-# for every thing else when definition does not come in list type
+# for everything else when definition does not come in list type
 else:
     print(leo_tag + "English definition of '{}' is: ".format(word) + output)
     
