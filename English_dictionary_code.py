@@ -27,7 +27,7 @@ def english_dictionary(word):
     elif len(similarity_between(word, english_definitions.keys())) > 0:
         yes_no = input(leo_tag + "Did you mean '{}' instead?: ".format(similarity_between(word, english_definitions.keys())[0]))
         
-        # asking user to enter yes if the suggested word is the expected output
+        # asking user to enter yes/no if the suggested word is the expected output
         if similarity_between(yes_no.lower(), ['y', 'ye', 'yes', 'yeah']):
             return english_definitions[similarity_beween(word, english_definitions.keys())[0]]
         
